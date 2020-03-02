@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Actor;
+use App\Genero;
 use Illuminate\Http\Request;
 
-class ActoresController extends Controller
+class GenerosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class ActoresController extends Controller
      */
     public function index()
     {
-        $actores = Actor::all();
-        return view('actores.index',compact('actores'));
-
+        //
     }
 
     /**
@@ -43,21 +41,21 @@ class ActoresController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Genero  $genero
      * @return \Illuminate\Http\Response
      */
-    public function show(Actor $actor)
+    public function show(Genero $genero)
     {
-        return view('actores.show', compact('actor'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Genero  $genero
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Genero $genero)
     {
         //
     }
@@ -66,10 +64,10 @@ class ActoresController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Genero  $genero
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Genero $genero)
     {
         //
     }
@@ -77,10 +75,10 @@ class ActoresController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Genero  $genero
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Genero $genero)
     {
         //
     }

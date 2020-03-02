@@ -43,10 +43,15 @@ Route::get('peliculas/{id?}', function ($id=null) {
     }
 });
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('actores', 'ActoresController@index')->name('actores.index');
+Route::get('actores/{actor}', 'ActoresController@show')->name('actores.show');
+
+
+Route::resource('generos', 'GenerosController');
