@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ActoresController extends Controller
 {
@@ -26,7 +27,7 @@ class ActoresController extends Controller
      */
     public function create()
     {
-        //
+        return view('actores.create');
     }
 
     /**
@@ -35,9 +36,15 @@ class ActoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $ruta = request()->foto->store('public');
+        $actor = Actor::create([
+            'nombre'=> request()->nombre,
+            'edad'=> request()->edad,
+            'foto'=> basename($ruta)
+        ]);
+        return redirect()->route('actores.index')->with('status', "Se creó el actor $actor->nombre");
     }
 
     /**
@@ -57,9 +64,9 @@ class ActoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Actor $actor)
     {
-        //
+        return view('actores.edit', compact('actor'));
     }
 
     /**
@@ -69,9 +76,20 @@ class ActoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Actor $actor)
     {
-        //
+        if(request()->file('foto')){
+            $ruta_foto = request()->foto->store('public');
+            if($actor->foto){
+                Storage::delete('public/'.$actor->foto);
+            }
+        }
+        $actor->update([
+            'nombre'=> request()->nombre,
+            'edad'=> request()->edad,
+            'foto'=> (isset($ruta_foto))? basename($ruta_foto): $actor->foto
+        ]);
+        return redirect()->route('actores.show',$actor)->with('status','Se actualizó este actor');
     }
 
     /**
@@ -80,8 +98,12 @@ class ActoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Actor $actor)
     {
-        //
+        if($actor->foto){
+            Storage::delete('public/'.$actor->foto);
+        }
+        $actor->delete();
+         return redirect()->route('actores.index')->with('status','Actor Borrado!');
     }
 }

@@ -33,8 +33,16 @@ Route::get('peliculas/{id?}', function ($id=null) {
         return view('peliculas',compact('peliculas'));
     }
 });
+// Rutas Actores
+// Route::get('actores', 'ActoresController@index')->name('actores.index');
+// Route::get('actores/create','ActoresController@create')->name('actores.create');
+// Route::get('actores/{actor}', 'ActoresController@show')->name('actores.show');
+// Route::get('actores/{actor}/edit', 'ActoresController@edit')->name('actores.edit');
+// Route::put('actores/{actor}', 'ActoresController@update')->name('actores.update');
+// Route::post('actores', 'ActoresController@store')->name('actores.store');
+// Route::delete('actores/{actor}', 'ActoresController@destroy')->name('actores.destroy');
 
-Route::get('actores', 'ActoresController@index')->name('actores.index');
-Route::get('actores/{actor}', 'ActoresController@show')->name('actores.show');
+Route::resource('actores', 'ActoresController',['parameters' => ['actores' => 'actor']]);
+
 
 Route::resource('generos', 'GenerosController');
