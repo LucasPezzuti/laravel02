@@ -33,11 +33,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @section('sidebar')
-                        {{-- <ul class="navbar-nav mr-auto">
-
-                        </ul> --}}
-                    @show
+                    @include('menu')
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
