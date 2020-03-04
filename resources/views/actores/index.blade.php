@@ -4,10 +4,24 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            {{-- @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif --}}
             <div class="card">
-                <div class="card-header">Lista de actores</div>
+                <div class="card-header navbar">
+                    Lista de actores
+                    {{-- <ul class="nav  ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{route('actores.create')}}">Nuevo actor</a>
+                        </li>
+
+                    </ul> --}}
+                </div>
 
                 <div class="card-body">
+
                     <h3>Actores</h3>
                     <ul>
                         @forelse ($actores as $actor)
