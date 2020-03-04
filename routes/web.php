@@ -1,20 +1,11 @@
 <?php
+Auth::routes();
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::get('/', function () {
     $nombre = "Facundo";
     $array = ["peras","bananas"];
 
-    return view("home",compact(['nombre','array']));
+    return view("inicio",compact(['nombre','array']));
 });
 
 Route::post('/', function () {
@@ -43,15 +34,7 @@ Route::get('peliculas/{id?}', function ($id=null) {
     }
 });
 
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-// Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('actores', 'ActoresController@index')->name('actores.index');
 Route::get('actores/{actor}', 'ActoresController@show')->name('actores.show');
-
 
 Route::resource('generos', 'GenerosController');

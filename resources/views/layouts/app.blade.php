@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('css')
 </head>
 <body>
     <div id="app">
@@ -32,9 +33,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    @section('sidebar')
+                        {{-- <ul class="navbar-nav mr-auto">
 
-                    </ul>
+                        </ul> --}}
+                    @show
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
